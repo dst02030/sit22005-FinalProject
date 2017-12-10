@@ -98,8 +98,8 @@ public:
     bool isEmpty();
 
 public: // additional proint
-    void InsertNextTo(int val);
-    void InsertNextTo(char* val);
+    void InsertNextTo(int find_val, int val);
+    void InsertNextTo(char* find_val, char* val);
     void RemoveNode(int val);
     void RemoveNode(char* val);
     Node* find_node(int val);

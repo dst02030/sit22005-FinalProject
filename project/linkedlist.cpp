@@ -1,6 +1,6 @@
 #include  "linkedlist.h"
 #include <stdlib.h>
-#include <csstring>
+#include <cstring>
 
 /////////////////////////////////////////
 // Node
@@ -189,7 +189,7 @@ Node* linkedlist::find_prev_node(Node* next)
 
 void linkedlist::print(std::ostream& os)
 {
-    for(Node* cur = pHead; cur != nullptr; cur = cur->get_value())
+    for(Node* cur = pHead; cur != nullptr; cur = cur->get_next())
     {
         if(cur->get_node_type() == INT_NODE)
         {
