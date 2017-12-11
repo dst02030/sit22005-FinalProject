@@ -2,13 +2,13 @@
 
 void queue::push(int val)
 {
-    
+    InsertToBack(val);
 }
 
 int queue::pop()
 {
 
-    
+    RemoveFromFront_Integer();
 }
 
 int queue::front()

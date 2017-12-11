@@ -78,13 +78,24 @@ linkedlist::linkedlist()
 {
     
 }
+//1. Tail 포인터 -> stack First in Last out
+//맨 뒤에 있는 친구가 맨 첫번째로 나온다.
+//a -> b -> c-> d -> NULL
+//queue나 stack 다 똑같아. 데이터를 상관이 없고,
+//데이터를 어떻게 뺴냐냐가 상관이 있음.
+//queue First in First out.
+//첫번째로 들어가면 첫번째로 나와.
+//
 
+
+//앞에 정수값 넣는다. , val은 숫자, pHead는 순서
 void linkedlist::InsertToFront(int val)
 {
     IntegerNode* inode = new IntegerNode(val, pHead);
     pHead = inode;
 }
 
+//뒤에 정수값 넣는다.
 void linkedlist::InsertToBack(int val)
 {
     if(isEmpty())
@@ -166,6 +177,7 @@ char* linkedlist::RemoveFromBack_String()
     return temp;
 }
 
+//빈 리스트면 pHead가 nullptr을 반환한다.
 bool linkedlist::isEmpty()
 {
     return pHead == nullptr? true:false;
