@@ -11,18 +11,18 @@ int main()
         linkedlist ll;
         
         int index = 10;
-        ll.InsertToFront(index--);
-        ll.InsertToFront(index--);
-        ll.InsertToFront(index--);
-        ll.InsertToFront(index--);
-        ll.InsertToFront(index--);
-        ll.InsertToFront(index--);
-        ll.InsertToFront(index--);
-        ll.InsertToBack(index--);
-        ll.InsertToBack(index--);
-        ll.InsertToBack(index--);
-        ll.InsertToBack(index--);
 
+        ll.InsertToFront(index--);
+        ll.InsertToFront(index--);
+        ll.InsertToFront(index--);
+        ll.InsertToFront(index--);
+        ll.InsertToFront(index--);
+        ll.InsertToFront(index--);
+        ll.InsertToFront(index--);
+        ll.InsertToBack(index--);
+        ll.InsertToBack(index--);
+        ll.InsertToBack(index--);
+        ll.InsertToBack(index--);
         
         ll.print(std::cout);
         
@@ -56,8 +56,7 @@ int main()
         
         q.print(std::cout);
         q.pop();
-        q.print(std::cout);    
-
+        q.print(std::cout);
     }
     
     return 0;

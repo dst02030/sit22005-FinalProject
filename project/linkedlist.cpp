@@ -173,6 +173,12 @@ void linkedlist::InsertToBack(char* val)
     }
 }
 
+
+
+
+
+
+
 //char일 시에, 앞부분에 스트링값을 지운다.
 char* linkedlist::RemoveFromFront_String()
 {
@@ -186,6 +192,14 @@ char* linkedlist::RemoveFromBack_String()
     char* temp;
     return temp;
 }
+
+
+
+
+
+
+
+
 
 //빈 리스트면 pHead가 nullptr을 반환한다.
 bool linkedlist::isEmpty()
@@ -232,7 +246,6 @@ void linkedlist::print(std::ostream& os)
 
 void linkedlist::InsertNextTo(int find_val, int val)
 {
-    
      if(isEmpty())
     {
         InsertToFront(val);
@@ -243,31 +256,74 @@ Node *cur = pHead;
 int temp;
 IntegerNode* Icur = static_cast<IntegerNode*>(cur);
 temp = Icur->get_value();
-while(temp != find_val && Icur != nullptr )
+while(temp != find_val && cur != nullptr )
     {
         cur = static_cast<Node*>(Icur);
         cur = cur->get_next();
+        if (cur != nullptr){
         Icur = static_cast<IntegerNode*>(cur);
         temp = Icur->get_value();
+        }
     }
-    if (temp == find_val){
-    cur = cur->get_next();
-    
+   
+   if(temp == find_val){
     Node* cur2 = cur->get_next();
     Node* inode = new IntegerNode(val, cur2);
     Icur->set_next(inode);
-    }
-    
-    else{
-        InsertToBack(val);
+   }
+   
+   
+   //만약에 찾는 값이 없으면, 맨 뒤에 받은 val값을 입력한다.
+   else{
+       InsertToBack(val);
+   }
     }
 }
-}
+
 
 void linkedlist::InsertNextTo(char* find_val, char* val)
 {
+     
+     if(isEmpty())
+    {
+        InsertToFront(val);
+    }
     
+    else{
+Node *cur = pHead;
+char* temp;
+StringNode* Icur = static_cast<StringNode*>(cur);
+temp = Icur->get_value();
+while(temp != find_val && cur != nullptr )
+    {
+        cur = static_cast<Node*>(Icur);
+        cur = cur->get_next();
+        if (cur != nullptr){
+        Icur = static_cast<StringNode*>(cur);
+        temp = Icur->get_value();
+        }
+    }
+   
+   if(temp == find_val){
+    Node* cur2 = cur->get_next();
+    Node* inode = new StringNode(val, cur2);
+    Icur->set_next(inode);
+   }
+   
+   
+   //만약에 찾는 값이 없으면, 맨 뒤에 받은 val값을 입력한다.
+   else{
+       InsertToBack(val);
+   }
+    }
 }
+
+
+
+
+
+
+
 
 void linkedlist::RemoveNode(int val)
 {
@@ -279,14 +335,70 @@ void linkedlist::RemoveNode(char* val)
     
 }
 
+
+
+
+
+
 Node* linkedlist::find_node(int val)
 {
+    if(!isEmpty()){
+        Node *cur = pHead;
+    int temp;
+    IntegerNode* Icur = static_cast<IntegerNode*>(cur);
+    temp = Icur->get_value();
+    while(temp != val && cur != nullptr )
+    {
+        cur = static_cast<Node*>(Icur);
+        cur = cur->get_next();
+        if (cur != nullptr){
+        Icur = static_cast<IntegerNode*>(cur);
+        temp = Icur->get_value();
+        }
+    }
+    if(temp == val){
+    return cur;
+    }
     
+    else{
+        std::cout<< "I can't find your input val."<<std::endl;
+    }
+}
+
+else{
+        std::cout<<"Your link is empty."<<std::endl;
+    }
 }
 
 Node* linkedlist::find_node(char* val)
 {
+    if(!isEmpty()){
+        Node *cur = pHead;
+    char* temp;
+    StringNode* Scur = static_cast<StringNode*>(cur);
+    temp = Scur->get_value();
+    while(temp != val && cur != nullptr )
+    {
+        cur = static_cast<Node*>(Scur);
+        cur = cur->get_next();
+        if (cur != nullptr){
+        Scur = static_cast<StringNode*>(cur);
+        temp = Scur->get_value();
+        }
+    }
+    if(temp == val){
+    return cur;
+    }
     
+    else{
+        std::cout<< "I can't find your input val."<<std::endl;
+    }
+}
+
+else{
+        std::cout<<"Your link is empty."<<std::endl;
+    }
+
 }
 
 /*

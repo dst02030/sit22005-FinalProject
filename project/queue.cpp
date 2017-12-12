@@ -19,7 +19,6 @@ int queue::front()
         Node* cur = get_head();
         IntegerNode* inode = static_cast<IntegerNode*>(cur);
         temp = inode -> get_value();
-        delete cur;
     }
     std::cout<<"Front value is " << temp<<std::endl;
     
