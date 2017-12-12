@@ -13,7 +13,15 @@ int queue::pop()
 
 int queue::front()
 {
-    
+    int temp = 0;
+    if(!isEmpty())
+    {
+        Node* cur = get_head();
+        IntegerNode* inode = static_cast<IntegerNode*>(cur);
+        temp = inode -> get_value();
+        delete cur;
+    }
+    std::cout<<"Front value is " << temp<<std::endl;
     
 }
 

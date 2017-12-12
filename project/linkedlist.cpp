@@ -3,7 +3,7 @@
 #include <cstring>
 
 /////////////////////////////////////////
-// Node
+// Node(Base)
 Node::Node(Node* next, NodeType node)
 :pNext(next), node_type(node)
 {
@@ -11,7 +11,7 @@ Node::Node(Node* next, NodeType node)
 }
 
 /////////////////////////////////////////
-// IntegerNode
+// IntegerNode(Derived) => Node값들을 받아옴. Integer값으로..
 IntegerNode::IntegerNode()
 :Node(nullptr, INT_NODE)
 {
@@ -35,7 +35,7 @@ void IntegerNode::set_value(int val)
 }
 
 /////////////////////////////////////////
-// StringNode
+// StringNode(Derived) => Node값들을 받아오고, String값으로..
 StringNode::StringNode()
 :Node(nullptr, STRING_NODE)
 {
@@ -72,20 +72,13 @@ void StringNode::set_value(char* val)
 }
 
 /////////////////////////////////////////
-// LinkedList Manager
+// LinkedList Manager (리스트들 관리함)
 linkedlist::linkedlist()
 :pHead(nullptr)
 {
     
 }
-//1. Tail 포인터 -> stack First in Last out
-//맨 뒤에 있는 친구가 맨 첫번째로 나온다.
-//a -> b -> c-> d -> NULL
-//queue나 stack 다 똑같아. 데이터를 상관이 없고,
-//데이터를 어떻게 뺴냐냐가 상관이 있음.
-//queue First in First out.
-//첫번째로 들어가면 첫번째로 나와.
-//
+
 
 
 //앞에 정수값 넣는다. , val은 숫자, pHead는 순서
@@ -111,6 +104,7 @@ void linkedlist::InsertToBack(int val)
     }
 }
 
+// 숫자일 시에, 앞부분에서 지운다.
 int linkedlist::RemoveFromFront_Integer()
 {
     int temp = 0;
@@ -127,6 +121,7 @@ int linkedlist::RemoveFromFront_Integer()
     return temp;
 }
 
+//숫자일 시에, 뒷부분에서 지운다.
 int linkedlist::RemoveFromBack_Integer()
 {
     int temp = 0;
@@ -155,22 +150,37 @@ int linkedlist::RemoveFromBack_Integer()
     return temp;
 }
 
+//char값일 시에, 앞부분에 넣는다.
 void linkedlist::InsertToFront(char* val)
 {
-    
+    StringNode* inode = new StringNode(val, pHead);
+    pHead = inode;
 }
 
+//char일 시에, 뒷부분에 넣는다.
 void linkedlist::InsertToBack(char* val)
 {
-    
+     if(isEmpty())
+    {
+        InsertToFront(val);
+    }
+    else
+    {
+        Node* last_node = find_prev_node(nullptr);
+        
+        StringNode* inode = new StringNode(val, nullptr);
+        last_node->set_next(inode);
+    }
 }
 
+//char일 시에, 앞부분에 스트링값을 지운다.
 char* linkedlist::RemoveFromFront_String()
 {
     char* temp;
     return temp;
 }
 
+//char일 시에, 뒷부분에서 지운다.
 char* linkedlist::RemoveFromBack_String()
 {
     char* temp;
@@ -183,6 +193,8 @@ bool linkedlist::isEmpty()
     return pHead == nullptr? true:false;
 }
 
+//cur값에 pHead를 대입, 그리고 cur값과 next 값이 일치할 시에, 빈 리스트이기에, nullptr값을 반환한다.
+//cur 값을 다음 node로 옮겼을 때에, next값과 같지 않거나, cur 값이 nullptr이 아닐 때는 cur를 다음 node로 옮기게 된다.
 Node* linkedlist::find_prev_node(Node* next)
 {
     Node* cur = pHead;
@@ -199,6 +211,7 @@ Node* linkedlist::find_prev_node(Node* next)
     return cur;
 }
 
+//linkedlist 내에 값들을 반환한다.
 void linkedlist::print(std::ostream& os)
 {
     for(Node* cur = pHead; cur != nullptr; cur = cur->get_next())
@@ -220,6 +233,35 @@ void linkedlist::print(std::ostream& os)
 void linkedlist::InsertNextTo(int find_val, int val)
 {
     
+     if(isEmpty())
+    {
+        InsertToFront(val);
+    }
+    
+    else{
+Node *cur = pHead;
+int temp;
+IntegerNode* Icur = static_cast<IntegerNode*>(cur);
+temp = Icur->get_value();
+while(temp != find_val && Icur != nullptr )
+    {
+        cur = static_cast<Node*>(Icur);
+        cur = cur->get_next();
+        Icur = static_cast<IntegerNode*>(cur);
+        temp = Icur->get_value();
+    }
+    if (temp == find_val){
+    cur = cur->get_next();
+    
+    Node* cur2 = cur->get_next();
+    Node* inode = new IntegerNode(val, cur2);
+    Icur->set_next(inode);
+    }
+    
+    else{
+        InsertToBack(val);
+    }
+}
 }
 
 void linkedlist::InsertNextTo(char* find_val, char* val)
@@ -246,3 +288,10 @@ Node* linkedlist::find_node(char* val)
 {
     
 }
+
+/*
+설명:
+pNext => 해당 노드 뒤의 노드.
+next => 해당 노드 뒤의 노드를 설정하기 위해서 우리가 넣는 값.(set_next에서 사용)
+pHead => 맨 앞에 node(node Type)
+*/

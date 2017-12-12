@@ -22,6 +22,7 @@ int main()
         ll.InsertToBack(index--);
         ll.InsertToBack(index--);
         ll.InsertToBack(index--);
+
         
         ll.print(std::cout);
         
@@ -42,6 +43,7 @@ int main()
         s.print(std::cout);
         s.pop();
         s.print(std::cout);    
+
     }
     std::cout << std::endl;
     
@@ -55,6 +57,7 @@ int main()
         q.print(std::cout);
         q.pop();
         q.print(std::cout);    
+
     }
     
     return 0;
