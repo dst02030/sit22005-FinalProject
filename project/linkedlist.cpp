@@ -182,7 +182,8 @@ void linkedlist::InsertToBack(char* val)
 //char일 시에, 앞부분에 스트링값을 지운다.
 char* linkedlist::RemoveFromFront_String()
 {
-
+    char* temp;
+    return temp;
 }
 
 //char일 시에, 뒷부분에서 지운다.
@@ -270,7 +271,6 @@ while(temp != find_val && cur != nullptr )
     Node* inode = new IntegerNode(val, cur2);
     Icur->set_next(inode);
    }
-   
    
    //만약에 찾는 값이 없으면, 맨 뒤에 받은 val값을 입력한다.
    else{
