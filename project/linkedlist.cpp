@@ -182,8 +182,7 @@ void linkedlist::InsertToBack(char* val)
 //char일 시에, 앞부분에 스트링값을 지운다.
 char* linkedlist::RemoveFromFront_String()
 {
-    char* temp;
-    return temp;
+
 }
 
 //char일 시에, 뒷부분에서 지운다.
@@ -280,7 +279,6 @@ while(temp != find_val && cur != nullptr )
     }
 }
 
-
 void linkedlist::InsertNextTo(char* find_val, char* val)
 {
      
@@ -318,30 +316,23 @@ while(temp != find_val && cur != nullptr )
     }
 }
 
-
-
-
-
-
-
-
 void linkedlist::RemoveNode(int val)
 {
     Node* cur = find_node(val);
     Node* prev_cur = find_prev_node(cur);
     Node* next_cur = cur->get_next();
     prev_cur->set_next(next_cur);
+
 }
 
 void linkedlist::RemoveNode(char* val)
 {
-    
+    Node* cur = find_node(val);
+    Node* prev_cur = find_prev_node(cur);
+    Node* next_cur = cur->get_next();
+    prev_cur->set_next(next_cur);
+
 }
-
-
-
-
-
 
 Node* linkedlist::find_node(int val)
 {
@@ -376,22 +367,28 @@ else{
 Node* linkedlist::find_node(char* val)
 {
     if(!isEmpty()){
-        Node *cur = pHead;
+    Node *cur = pHead;
     char* temp;
     StringNode* Scur = static_cast<StringNode*>(cur);
-    temp = Scur->get_value();
-    while(temp != val && cur != nullptr )
+    temp = new char[strlen(Scur->get_value())+1];
+    strcpy(temp, Scur->get_value());
+    temp[strlen(Scur->get_value())] = '\0';
+    while(strcmp(temp, val) != 0 && cur != nullptr )
     {
         cur = static_cast<Node*>(Scur);
         cur = cur->get_next();
         if (cur != nullptr){
         Scur = static_cast<StringNode*>(cur);
-        temp = Scur->get_value();
+        temp = new char[strlen(Scur->get_value())+1];
+        strcpy(temp, Scur->get_value());
+        temp[strlen(Scur->get_value())] = '\0';
+        std::cout<<temp;
         }
     }
-    if(temp == val){
+    if(strcmp(temp, val)==0){
     return cur;
     }
+    
     
     else{
         std::cout<< "I can't find your input val."<<std::endl;
