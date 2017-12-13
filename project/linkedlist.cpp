@@ -327,7 +327,10 @@ while(temp != find_val && cur != nullptr )
 
 void linkedlist::RemoveNode(int val)
 {
-    
+    Node* cur = find_node(val);
+    Node* prev_cur = find_prev_node(cur);
+    Node* next_cur = cur->get_next();
+    prev_cur->set_next(next_cur);
 }
 
 void linkedlist::RemoveNode(char* val)

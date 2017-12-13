@@ -23,7 +23,6 @@ int main()
         ll.InsertToBack(index--);
         ll.InsertToBack(index--);
         ll.InsertToBack(index--);
-        
         ll.print(std::cout);
         
         for(int i = 0; i <12; i++)
