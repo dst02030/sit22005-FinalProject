@@ -113,9 +113,7 @@ int linkedlist::RemoveFromFront_Integer()
         Node* cur = pHead;
         IntegerNode* inode = static_cast<IntegerNode*>(cur);
         temp = inode -> get_value();
-        
         pHead = cur->get_next();
-        
         delete cur;
     }
     return temp;
@@ -183,6 +181,18 @@ void linkedlist::InsertToBack(char* val)
 char* linkedlist::RemoveFromFront_String()
 {
     char* temp;
+    
+    if(!isEmpty())
+    {
+        Node* cur = pHead;
+        StringNode* inode = static_cast<StringNode*>(cur);
+        temp = new char[strlen(inode -> get_value())+1];
+        strcpy(temp, inode -> get_value());
+        temp[strlen(inode -> get_value())] = '\0';
+        pHead = cur->get_next();
+        delete inode;
+    }
+    
     return temp;
 }
 
@@ -190,6 +200,31 @@ char* linkedlist::RemoveFromFront_String()
 char* linkedlist::RemoveFromBack_String()
 {
     char* temp;
+
+    if(!isEmpty())
+    {
+        if(pHead->get_next() == nullptr)
+        {
+            StringNode* inode = static_cast<StringNode*>(pHead);
+            temp = new char[strlen(inode -> get_value())+1];
+            strcpy(temp, inode -> get_value());
+            temp[strlen(inode -> get_value())] = '\0';
+            delete inode;
+            pHead = nullptr;
+        }
+        else
+        {
+            Node* last_node = find_prev_node(nullptr);
+            Node* prev_node = find_prev_node(last_node);
+            prev_node -> set_next(nullptr);
+            StringNode* inode = static_cast<StringNode*>(last_node);
+            temp = new char[strlen(inode -> get_value())+1];
+            strcpy(temp, inode -> get_value());
+            temp[strlen(inode -> get_value())] = '\0';
+            
+            delete inode;
+        }
+    }
     return temp;
 }
 
@@ -382,7 +417,6 @@ Node* linkedlist::find_node(char* val)
         temp = new char[strlen(Scur->get_value())+1];
         strcpy(temp, Scur->get_value());
         temp[strlen(Scur->get_value())] = '\0';
-        std::cout<<temp;
         }
     }
     if(strcmp(temp, val)==0){
