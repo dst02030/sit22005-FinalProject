@@ -9,7 +9,6 @@ int main()
     {// Test Case 01
         std::cout << "Test Linked List" << std::endl;
         linkedlist ll;
-        linkedlist ii;
         int index = 10;
         ll.InsertToFront(index--);
         ll.InsertToFront(index--);
@@ -22,9 +21,6 @@ int main()
         ll.InsertToBack(index--);
         ll.InsertToBack(index--);
         ll.InsertToBack(index--);
-        ii.InsertToFront("give");
-        ii.InsertToBack("me");
-        ii.print(std::cout);
         ll.print(std::cout);
         
         for(int i = 0; i <12; i++)
