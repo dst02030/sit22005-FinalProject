@@ -357,6 +357,7 @@ void linkedlist::RemoveNode(int val)
     Node* prev_cur = find_prev_node(cur);
     Node* next_cur = cur->get_next();
     prev_cur->set_next(next_cur);
+    delete cur;
 
 }
 
@@ -366,7 +367,7 @@ void linkedlist::RemoveNode(char* val)
     Node* prev_cur = find_prev_node(cur);
     Node* next_cur = cur->get_next();
     prev_cur->set_next(next_cur);
-
+    delete cur;
 }
 
 Node* linkedlist::find_node(int val)
