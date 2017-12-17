@@ -20,7 +20,7 @@ int queue::front()
         IntegerNode* inode = static_cast<IntegerNode*>(cur);
         temp = inode -> get_value();
     }
-    std::cout<<"Front value is " << temp<<std::endl;
+    return temp;
     
 }
 

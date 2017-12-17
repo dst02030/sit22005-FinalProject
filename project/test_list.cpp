@@ -22,7 +22,6 @@ int main()
         ll.InsertToBack(index--);
         ll.InsertToBack(index--);
         ll.print(std::cout);
-        
         for(int i = 0; i <12; i++)
             ll.RemoveFromBack_Integer();
         
@@ -34,9 +33,10 @@ int main()
         std::cout << "Test Stack" << std::endl;
         int index = 0;
         stack s;
+
         for(int i = 0; i < 10; i++)
             s.push(index++);
-        
+
         s.print(std::cout);
         s.pop();
         s.print(std::cout);    
